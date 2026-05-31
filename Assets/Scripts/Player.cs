@@ -11,11 +11,13 @@ public class Player : MonoBehaviour
     public Rigidbody2D rigid;
     public SpriteRenderer spriter;
     public float speed;
+    public Animator anim;
     
     void Awake()
     {
         rigid = GetComponent<Rigidbody2D>();
         spriter = GetComponent<SpriteRenderer>();
+        anim = GetComponent<Animator>();
     }
     
     private void FixedUpdate() 
@@ -32,6 +34,8 @@ public class Player : MonoBehaviour
 
     private void LateUpdate()
     {
+        anim.SetFloat("Speed", inputVec.magnitude);
+        
         if (inputVec.x != 0)
         {
             // 0 이면 고정. -1 좌측이라 flip true, 1 우측은 flip false
